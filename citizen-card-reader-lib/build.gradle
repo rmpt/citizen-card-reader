@@ -1,0 +1,16 @@
+plugins {
+    id "java-library"
+}
+
+sourceSets {
+    main {
+        kotlin {
+            srcDirs += 'src/main/kotlin'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', includes: ['*.jar'])
+    testImplementation "org.springframework.boot:spring-boot-starter-test:$spring_boot_version"
+}

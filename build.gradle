@@ -1,0 +1,47 @@
+/**
+ * Project build setup
+ **/
+buildscript {
+	repositories {
+		mavenCentral()
+		gradlePluginPortal()
+	}
+
+	dependencies {
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+		classpath "org.jlleitschuh.gradle:ktlint-gradle:10.1.0"
+	}
+}
+
+group = 'com.rmpt.citizencard'
+version = '0.0.1'
+
+subprojects {
+	apply plugin: 'kotlin'
+	apply plugin: 'org.jlleitschuh.gradle.ktlint'
+
+	// Kotlin bytecode setup
+	compileKotlin.kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+	compileTestKotlin.kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	tasks.withType(Copy).all {
+		duplicatesStrategy 'exclude'
+	}
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		implementation 'org.jetbrains.kotlin:kotlin-reflect'
+		implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+		implementation "io.github.microutils:kotlin-logging-jvm:$kotlin_logging_version"
+		implementation "ch.qos.logback:logback-classic:$logback_version"
+	}
+}

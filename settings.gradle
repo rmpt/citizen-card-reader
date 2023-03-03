@@ -1,0 +1,10 @@
+pluginManagement {
+	repositories {
+		maven { url 'https://repo.spring.io/milestone' }
+		maven { url 'https://repo.spring.io/snapshot' }
+		gradlePluginPortal()
+	}
+}
+rootProject.name = 'citizen-card-reader'
+include "citizen-card-reader-lib"
+include "citizen-card-reader-api"

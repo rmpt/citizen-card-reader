@@ -1,0 +1,7 @@
+server:
+  shutdown: graceful
+  tomcat:
+    relaxed-query-chars: '|,{,},[,]'
+spring:
+  main:
+    banner-mode: off

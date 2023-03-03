@@ -1,0 +1,15 @@
+# MacOs
+.DS_Store
+
+# Gradle
+.gradle/
+build/
+!**/src/**/build
+!**/test/**/build
+
+# IJ
+.idea/
+*.iml
+
+# logs
+*.log

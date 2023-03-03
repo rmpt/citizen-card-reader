@@ -1,0 +1,24 @@
+plugins {
+    id 'application'
+    id "org.springframework.boot" version "$spring_boot_version"
+}
+
+sourceSets {
+    main {
+        kotlin {
+            srcDirs += 'src/main/kotlin'
+        }
+        resources {
+            srcDirs += [
+                    project(':citizen-card-reader-lib').sourceSets.main.resources
+            ]
+        }
+    }
+}
+
+dependencies {
+    implementation project(':citizen-card-reader-lib')
+    implementation "org.springframework.boot:spring-boot-starter:$spring_boot_version"
+    implementation "org.springframework.boot:spring-boot-starter-web:$spring_boot_version"
+    implementation "org.springframework.boot:spring-boot-starter-security:$spring_boot_version"
+}

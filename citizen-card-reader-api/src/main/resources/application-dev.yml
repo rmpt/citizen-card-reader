@@ -1,0 +1,10 @@
+server:
+  shutdown: graceful
+spring:
+  main:
+    banner-mode: off
+app:
+  requiredHeader:
+    name: X-SECRET-HEADER
+    value: ZYX
+  cors: https://restninja.io/
