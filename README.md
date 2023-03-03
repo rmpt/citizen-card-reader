@@ -53,7 +53,22 @@ If the release jar is not good for you, clone the repo and run (at the project r
 
 The jar will be packed and placed inside the dir: `/citizen-card-reader-api/build/libs`
 
-## Security
+## Custom configuration
+
+If you don't need to tweak any configuration, ignore this section. If for some reason you need to override some
+default configurations, create an `application.yml` file on the same dir of the runnable jar and set your configurations.
+
+### Server port
+
+By default the app will be available at `http://localhost:8080`, but you can change the port with the following 
+configuration inside your `application.yml`.
+
+```
+server:
+  port: 8081
+```
+
+### Security
 
 This app does not cover any kind of advanced security, it was designed to run in a private computer. Use it at your own risk.
 
@@ -63,8 +78,8 @@ However, there's a couple of configurations you can use to make it a little more
 
 ### CORS and HTTP header example
 
-By default, there's no CORS or custom header requirement, but you can tweak these configurations by setting an
-`application.yml` file along with the jar file.
+By default, there's no CORS or custom header requirement, but you can tweak these configurations with the
+`application.yml` file.
 
 1. Let's say you want to read some citizen card data from your webapp, running at `https://my-awesome-web-app.com`, and 
 you want to reject any request outside this domain.
@@ -80,7 +95,10 @@ app:
   cors: https://my-awesome-web-app.com
 ```
 
-The app will read this configuration and apply it on every request.
+The app will read this configuration file and apply it on every request.
+
+*NOTE*: you can set multiple domains for CORS configuration, separate them with a comma 
+(`cors: https://my-awesome-web-app.com,https://another-web-app.com`)
 
 ## Linux users
 
