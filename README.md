@@ -7,6 +7,20 @@ app installation and the Autenticacao.gov app installed).
 This new version does **not** require any of these apps. This is an HTTP server bundled with all required dependencies, 
 so you just need to run this app and request data through the API.
 
+## Requirements
+
+- Java (min 1.8)
+
+## How to run the app
+
+Download the latest release or build your own jar and run it as a java app:
+
+`java -jar citizer-card-reader-api.jar`
+
+An installation wizard is out of the scope of this project. If you want to run this jar as a service, you can, and maybe 
+it's the most common use-case, but you will have to build it yourself. It's pretty simple but varies from OS to OS, 
+there's a lot of information about it online.
+
 ## How to get data
 
 The API spec can be found [here](https://rmpt.dev/spec?api=ccard).
@@ -15,8 +29,29 @@ In short, you get 2 endpoints:
 
 - `/ccard/readers`
   - Get a list of connected card readers
-- `/ccard/data?reader=<your_reader>&fields=<field_to_get>`
+- `/ccard/data?reader=<reader_name>&fields=<field_to_get>`
   - Get data from the card inserted into the given reader 
+
+Possible fields to fetch are:
+- GivenName
+- SureName
+- Gender
+- BirthDay
+- TaxNumber
+- SocialSecurityNumber
+- CitizenNumber
+- ExpirationDate
+- Picture
+
+You can request a single field, multiple fields at once (for instance `fields=GivenName,SureName,TaxNumber`) or `all`.
+
+## How to build your own jar
+
+If the release jar is not good for you, clone the repo and run (at the project root):
+
+`./gradlew clean bootJar`
+
+The jar will be packed and placed inside the dir: `/citizen-card-reader-api/build/libs`
 
 ## Security
 
@@ -66,7 +101,7 @@ Install all at once with apt:
 
 ## Compatibility
 
-As mentioned before, this should work on MacOS, Windows and Linux, tests were made on:
+As mentioned before, this should work on any MacOS, Windows or Linux, specific tests were made on:
 - Windows 10
 - MacOS Monterey 12.6.3
 - Ubuntu 22.04.02 LTS
