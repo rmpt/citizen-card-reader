@@ -1,24 +1,27 @@
 # Citizen Card Reader - PT
 
-Runnable app to read Portuguese Citizen Card data from a browser (or any HTTP client). This app comes from a previous 
-version of mine, that would only run on Windows and required a lot of configuration (Chrome Extension, JS lib, local 
-app installation and the Autenticacao.gov app installed).
+Runnable app to read Portuguese Citizen Card data from a browser (or any HTTP client).
 
-This new version does **not** require any of these apps. This is an HTTP server bundled with all required dependencies, 
-so you just need to run this app and request data through the API.
+This app comes from a previous version that I made (a rebuild from scratch really), that would only run on Windows and 
+required a lot of configuration (Chrome Extension, JS lib, local app installation and the Autenticacao.gov app installed).
+
+This new version does **not** require ~~browser extension~~, ~~JS library~~ or ~~Windows~~. This is an HTTP server, 
+running on the JVM, so you just need request data through the API.
 
 ## Requirements
 
 - Java (min 1.8)
+- Autenticacao.gov (https://www.autenticacao.gov.pt/web/guest/cc-aplicacao)
 
 ## How to run the app
 
-Download the latest release or build your own jar and run it as a java app:
+Download the latest release from [here](https://github.com/rmpt/citizen-card-reader/releases) or build your own jar 
+and run it as a java app:
 
 `java -jar citizer-card-reader-api.jar`
 
-An installation wizard is out of the scope of this project. If you want to run this jar as a service, you can, and maybe 
-it's the most common use-case, but you will have to build it yourself. It's pretty simple but varies from OS to OS, 
+An installation wizard is not on the scope of this project. If you want to run this jar as a service, you can (and maybe 
+it's the most common use-case) but you will have to build it yourself. It's pretty simple but varies from OS to OS, 
 there's a lot of information about it online.
 
 ## How to get data
@@ -43,7 +46,7 @@ Possible fields to fetch are:
 - ExpirationDate
 - Picture
 
-You can request a single field, multiple fields at once (for instance `fields=GivenName,SureName,TaxNumber`) or `all`.
+You can request a single field, multiple comma separated fields (for instance `fields=GivenName,SureName,TaxNumber`) or `all`.
 
 ## How to build your own jar
 
@@ -97,24 +100,8 @@ app:
 
 The app will read this configuration file and apply it on every request.
 
-*NOTE*: you can set multiple domains for CORS configuration, separate them with a comma 
+*NOTE*: you can set multiple CORS domains, separate them with a comma 
 (`cors: https://my-awesome-web-app.com,https://another-web-app.com`)
-
-## Linux users
-
-Windows and MacOS users shouldn't have any problem running the app without installing any additional software.  
-
-For Linux users, you will need to have installed the following dependencies:
-- libxerces-c3.2
-- libxml-security-c20
-- libzip4
-- opensc-pkcs11
-- libpam-pkcs11
-- pcscd
-
-Install all at once with apt:
-
-`apt-get install -y libxerces-c3.2 libxml-security-c20 libzip4 opensc-pkcs11 libpam-pkcs11 pcscd`
 
 
 ## Compatibility
@@ -134,9 +121,4 @@ The project is divided in 2 modules:
 
 With that being said, if the HTTP interface does not cover your needs, feel free to branch this project and use the
 `citizen-card-reader-lib` module as needed. All core features are packed inside `citizen-card-reader-lib` module, 
-the api is a simple HTTP interface on top of the lib, so it's not required for other types of implementation.
-
-## Pteid lib
-
-This is a personal project, but the low level library that communicates with the citizen card is called pteid and is cloned 
-from the 3.9.1 version of the app [Autenticação.gov](https://www.autenticacao.gov.pt)  
+the api is a simple HTTP interface on top of the lib, so it's not required for other type of implementation.
