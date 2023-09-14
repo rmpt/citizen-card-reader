@@ -18,7 +18,7 @@ running on the JVM, so you just need request data through the API.
 Download the latest release from [here](https://github.com/rmpt/citizen-card-reader/releases) or build your own jar 
 and run it as a java app:
 
-`java -jar citizer-card-reader-api.jar`
+`java -jar citizen-card-reader-api.jar`
 
 An installation wizard is not on the scope of this project. If you want to run this jar as a service, you can (and maybe 
 it's the most common use-case) but you will have to build it yourself. It's pretty simple but varies from OS to OS, 
