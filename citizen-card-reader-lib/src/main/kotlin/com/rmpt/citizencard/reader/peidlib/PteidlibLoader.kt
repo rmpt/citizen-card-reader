@@ -1,8 +1,7 @@
 package com.rmpt.citizencard.reader.peidlib
 
-import com.rmpt.citizencard.reader.peidlib.setup.PteidSetupFactory
 import mu.KotlinLogging
-import pt.gov.cartaodecidadao.PTEID_ReaderSet
+import pt.gov.cartaodecidadao.*;
 
 object PteidlibLoader {
 
@@ -13,10 +12,8 @@ object PteidlibLoader {
     fun load() {
         if (!firstLoad) throw RuntimeException("Pteid lib already loaded. Library should only be laoded once")
         firstLoad = false
-
         log.info { "Loading PTEID library...." }
-        val nativeLibPath = PteidSetupFactory.new().run()
-        System.load(nativeLibPath)
+        PTEID_ReaderSet.initSDK();
         log.info { "PTEID library has been loaded." }
     }
 
