@@ -12,6 +12,7 @@ running on the JVM, so you just need request data through the API.
 
 - Java (min 1.8)
 - Autenticacao.gov (https://www.autenticacao.gov.pt/web/guest/cc-aplicacao)
+  - Last build with v3.12.0
 
 ## How to run the app
 
@@ -107,7 +108,7 @@ The app will read this configuration file and apply it on every request.
 ## Compatibility
 
 As mentioned before, this should work on any MacOS, Windows or Linux, specific tests were made on:
-- Windows 10
+- Windows 10 (x86 and x64)
 - MacOS Monterey 12.6.3
 - Ubuntu 22.04.02 LTS
 
